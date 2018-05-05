@@ -1,4 +1,6 @@
-language: node.js
+language: node_js
 node_js:
   - "node"
   - "8.11.1"
+install:
+  - yarn install
