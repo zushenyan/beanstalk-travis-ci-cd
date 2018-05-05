@@ -1,2 +1,5 @@
 node_modules
 yarn-error.log
+travis_rsa
+travis_rsa.pub
+scripts/set_env.sh
