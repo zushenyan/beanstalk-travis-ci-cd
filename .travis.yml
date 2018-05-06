@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-- node
-- 8.11.1
-before_install:
-- openssl aes-256-cbc -K $encrypted_3f83eba7ab44_key -iv $encrypted_3f83eba7ab44_iv
-  -in travis_rsa.enc -out travis_rsa -d
-- chmod 600 travis_rsa
-- mv travis_rsa ~/.ssh/id_rsa
+  - node
+  - 8.11.1
 install:
-- yarn install
-after_success:
-- scripts/deploy.sh
-env:
-  matrix:
-    secure: eoUNUWK1TIBqa37nbHuoGPKUNoYVko6LKa7OJ+wPalS9j4pAP9GmXGSlDQ5kP69PV32wDFWuq1Qs6uXU3BvpCYHw6sE18hgi9+wlr45sDd7UsHXJwGPdsfaAUKRkNqUOtXnyLPit1aAwq2VFf+4NKjCx5ItSFTGd2NYV/gk9Dn1tZbJH3D6za3j1lMWtH+jWyfU4+BvuTrTSyiMDMV6ltjSKkq/dr3crokviZS7u6EXwkSvDi0yhPxEcOeZ/hXfzgMfQTzKTV0XhF/J6irAI9hXzsgN7M8eSVp2FLqb9A/w54w6U7YhZlHkrbtywmsnelgpSYLk5nTUHzQOrDM/UG9JM5EdEskHWlUNFfWNzdojaEOy+FyQGm1rVH3LzynBivhTZ+AcV1FlmGeL+4ioqJuJOXMgOBusfrFm8nHRISIIylYvbm+jmEReBiELvvHUSEytPx4TU3ktRE14TBwohi3C4cJVarOxeljKwg7GtD7/SfQuazexd5ee39H0jqu7FAQ5BYEqvYzKyoiqvd8GwoqAzFFFKaE62wQah4dKUFMtlr9qiZWHEDBj8wnRnYqTAYMWzknkoXFa9/P/fJkKJd0PwtJOZtMZfyB7meiR83wmk56LpIKfEYxZoyRuWYplFLteR4tIDLgbjYlcFSOdUdgVO9xvXqa3x2Ugpz44i5Ro=
+  - yarn install
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJE6I26JNA2IX5OLA
+  secret_access_key:
+    secure: erSiZS3UobM/IFTWqeAi/iKyYPMqPNfWwZYTeFFbrAWTvJP0ex/m7G8AZkQ1tJo1SLnke0rHisuO1ut0OxvT5H2xsFmx4XzMSDlSo2Pj0ZsbWudEe0I01ITKUuIeH74RVLjA8h8AjbLbCA5ppcU4w1uKIKj/wE4nyrNpjf+PIA6xfmvmk0GC7SgD6jwtwn+kvPBXDAveGiHrw2j4KMugEGyXLi1uOQNVrqk1uD1Rj8tRihtf9PQRqownIRRw8s/tOb7e0OSX1mJi4bIEaeIyTcEbZUIviXJs1NNS0hhN6/OSRouJjfgo2r+2oYQSPC2MrGZDN8zdtxeIzgHRxSE94dnR9WvSdLzo9LmZChr7NQMusoxfUZVdX3b+KrvIDK3x5mpk/QfcJJhz6YjT/+r4k8kodZWMmQqOmjez3ODBaaB19Hb/sAzQBLplkQ9Nmeoa4kYuyRnWQiUNZWSZWPPCsn4/GuU+3y5W9BgfUnZRa406qN/NlkR/9b6Xl2muEnNVQDdUvtUtTikS9fzOxl6Px3szbOrwWFvwftRGhnnTewcDyn9ytq/UW3jT3BEH4uPZVL6dDPVl9vgf0JWaYisj07m5PFcmaCOuDZap7kQsSaqCDR2qwEEADWVxgHJwQxqwd628AUJscrnSAPfqNw1j/rZXjVYFAu6z+y8Os/8dfVQ=
+  region: us-west-2
+  app: test-playground
+  env: develop
+  on:
+    repo: zushenyan/test-playground
