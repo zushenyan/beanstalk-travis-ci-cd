@@ -14,3 +14,4 @@ deploy:
   env: develop
   on:
     repo: zushenyan/test-playground
+  bucket_name: elasticbeanstalk-us-west-2-677123064146
