@@ -1,9 +1,10 @@
-language: node_js
-node_js:
-  - node
-  - 8.11.1
-install:
-  - yarn install
+sudo: required
+language: bash
+services:
+  - docker
+script:
+  - docker build -t test .
+  - docker run -it test sh -c "yarn run test"
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAJE6I26JNA2IX5OLA
@@ -11,7 +12,7 @@ deploy:
     secure: erSiZS3UobM/IFTWqeAi/iKyYPMqPNfWwZYTeFFbrAWTvJP0ex/m7G8AZkQ1tJo1SLnke0rHisuO1ut0OxvT5H2xsFmx4XzMSDlSo2Pj0ZsbWudEe0I01ITKUuIeH74RVLjA8h8AjbLbCA5ppcU4w1uKIKj/wE4nyrNpjf+PIA6xfmvmk0GC7SgD6jwtwn+kvPBXDAveGiHrw2j4KMugEGyXLi1uOQNVrqk1uD1Rj8tRihtf9PQRqownIRRw8s/tOb7e0OSX1mJi4bIEaeIyTcEbZUIviXJs1NNS0hhN6/OSRouJjfgo2r+2oYQSPC2MrGZDN8zdtxeIzgHRxSE94dnR9WvSdLzo9LmZChr7NQMusoxfUZVdX3b+KrvIDK3x5mpk/QfcJJhz6YjT/+r4k8kodZWMmQqOmjez3ODBaaB19Hb/sAzQBLplkQ9Nmeoa4kYuyRnWQiUNZWSZWPPCsn4/GuU+3y5W9BgfUnZRa406qN/NlkR/9b6Xl2muEnNVQDdUvtUtTikS9fzOxl6Px3szbOrwWFvwftRGhnnTewcDyn9ytq/UW3jT3BEH4uPZVL6dDPVl9vgf0JWaYisj07m5PFcmaCOuDZap7kQsSaqCDR2qwEEADWVxgHJwQxqwd628AUJscrnSAPfqNw1j/rZXjVYFAu6z+y8Os/8dfVQ=
   region: us-west-2
   app: test-playground
-  env: develop
+  env: docker
   on:
     repo: zushenyan/test-playground
   bucket_name: elasticbeanstalk-us-west-2-677123064146
